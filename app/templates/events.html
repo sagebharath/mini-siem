@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block content %}
+<h1>Events</h1>
+
+<form method="get" class="filter-form">
+  <input
+    type="text"
+    name="event_type"
+    placeholder="Event Type"
+    value="{{ filters.event_type }}"
+  />
+  <input
+    type="text"
+    name="source_ip"
+    placeholder="Source IP"
+    value="{{ filters.source_ip }}"
+  />
+  <input
+    type="text"
+    name="username"
+    placeholder="Username"
+    value="{{ filters.username }}"
+  />
+  <button type="submit">Filter</button>
+  <a href="/events" class="clear-btn">Clear</a>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Timestamp</th>
+      <th>Event ID</th>
+      <th>Event Type</th>
+      <th>User</th>
+      <th>Source IP</th>
+      <th>Host</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in events %}
+    <tr>
+      <td>{{ event.id }}</td>
+      <td>{{ event.timestamp }}</td>
+      <td>{{ event.event_id }}</td>
+      <td>{{ event.event_type }}</td>
+      <td>{{ event.username }}</td>
+      <td>{{ event.source_ip }}</td>
+      <td>{{ event.host }}</td>
+      <td>{{ event.status }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

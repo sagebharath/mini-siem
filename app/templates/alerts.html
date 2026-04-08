@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% block content %}
+<h1>Alerts</h1>
+
+<form method="get" class="filter-form">
+  <input
+    type="text"
+    name="severity"
+    placeholder="Severity"
+    value="{{ filters.severity }}"
+  />
+  <input
+    type="text"
+    name="source_ip"
+    placeholder="Source IP"
+    value="{{ filters.source_ip }}"
+  />
+  <input
+    type="text"
+    name="status"
+    placeholder="Status"
+    value="{{ filters.status }}"
+  />
+  <button type="submit">Filter</button>
+  <a href="/alerts" class="clear-btn">Clear</a>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Rule</th>
+      <th>Severity</th>
+      <th>Source IP</th>
+      <th>Event Count</th>
+      <th>Status</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for alert in alerts %}
+    <tr>
+      <td>{{ alert.id }}</td>
+      <td>{{ alert.rule_name }}</td>
+      <td>
+        <span class="badge severity-{{ alert.severity }}">
+          {{ alert.severity }}
+        </span>
+      </td>
+      <td>{{ alert.source_ip }}</td>
+      <td>{{ alert.event_count }}</td>
+      <td>{{ alert.status }}</td>
+      <td>{{ alert.description }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

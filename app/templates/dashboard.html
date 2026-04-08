@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block content %}
+<h1>Dashboard</h1>
+
+<div class="cards">
+  <div class="card">
+    <h3>Total Events</h3>
+    <p>{{ event_count }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Total Alerts</h3>
+    <p>{{ alert_count }}</p>
+  </div>
+</div>
+
+<h2>Recent Alerts</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Rule</th>
+      <th>Severity</th>
+      <th>Source IP</th>
+      <th>Status</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for alert in recent_alerts %}
+    <tr>
+      <td>{{ alert.id }}</td>
+      <td>{{ alert.rule_name }}</td>
+      <td>
+        <span class="badge severity-{{ alert.severity }}">
+          {{ alert.severity }}
+        </span>
+      </td>
+      <td>{{ alert.source_ip }}</td>
+      <td>{{ alert.status }}</td>
+      <td>{{ alert.description }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
