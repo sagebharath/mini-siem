@@ -21,6 +21,9 @@ A lightweight SIEM-style application that ingests Windows security events (JSON 
 - FastAPI + Jinja2 templates
 - SQLite + SQLAlchemy
 
+## Screenshots
+![Dashboard](screenshots/dashboard.png)
+
 ## Project Structure
 ```text
 app/        # FastAPI app, models, detection rules, parsers
