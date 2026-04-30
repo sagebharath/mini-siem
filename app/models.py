@@ -17,6 +17,10 @@ class Event(Base):
     service = Column(String, nullable=True)
     status = Column(String, nullable=True)
     raw_log = Column(Text, nullable=False)
+
+    log_hash = Column(String, nullable=True)
+    previous_hash = Column(String, nullable=True)
+
     created_at = Column(DateTime, default=datetime.utcnow)
 
 
